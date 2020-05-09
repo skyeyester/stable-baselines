@@ -4,11 +4,12 @@ import gym
 import numpy as np
 import pytest
 
-from stable_baselines import A2C, ACER, ACKTR, GAIL, DDPG, DQN, PPO1, PPO2,\
- TD3, TRPO, SAC
+from stable_baselines import (A2C, ACER, ACKTR, GAIL, DDPG, DQN, PPO1, PPO2,
+                              TD3, TRPO, SAC)
 from stable_baselines.common.cmd_util import make_atari_env
 from stable_baselines.common.vec_env import VecFrameStack
 from stable_baselines.common.evaluation import evaluate_policy
+from stable_baselines.common.callbacks import CheckpointCallback
 from stable_baselines.gail import ExpertDataset, generate_expert_traj
 
 
@@ -100,6 +101,16 @@ def test_pretrain_images():
     shutil.rmtree('pretrain_recorded_images')
     env.close()
     del dataset, model, env
+
+
+def test_gail_callback():
+    dataset = ExpertDataset(expert_path=EXPERT_PATH_PENDULUM, traj_limitation=10,
+                            sequential_preprocessing=True, verbose=0)
+    model = GAIL("MlpPolicy", "Pendulum-v0", dataset)
+    checkpoint_callback = CheckpointCallback(save_freq=500, save_path='./logs/gail/', name_prefix='gail')
+    model.learn(total_timesteps=1000, callback=checkpoint_callback)
+    shutil.rmtree('./logs/gail/')
+    del dataset, model
 
 
 @pytest.mark.parametrize("model_class", [A2C, ACKTR, GAIL, DDPG, PPO1, PPO2, SAC, TD3, TRPO])
