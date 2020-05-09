@@ -40,9 +40,8 @@ MOCK_MODULES = ['joblib', 'scipy', 'scipy.signal',
                 'tensorflow.contrib', 'tensorflow.contrib.layers',
                 'tensorflow.python', 'tensorflow.python.client', 'tensorflow.python.ops',
                 'tqdm', 'cloudpickle', 'matplotlib', 'matplotlib.pyplot',
-                'seaborn', 'gym', 'gym.spaces', 'gym.core',
-                'tensorflow.core', 'tensorflow.core.util', 'tensorflow.python.util',
-                'gym.wrappers', 'gym.wrappers.monitoring', 'zmq']
+                'seaborn', 'tensorflow.core', 'tensorflow.core.util', 'tensorflow.python.util',
+                'zmq']
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
 
 import stable_baselines
@@ -51,7 +50,7 @@ import stable_baselines
 # -- Project information -----------------------------------------------------
 
 project = 'Stable Baselines'
-copyright = '2018-2019, Stable Baselines'
+copyright = '2018-2020, Stable Baselines'
 author = 'Stable Baselines Contributors'
 
 # The short X.Y version
@@ -206,3 +205,7 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
+
+# Install gym on read the doc
+if on_rtd:
+    os.system('pip install gym')
