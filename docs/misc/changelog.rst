@@ -33,6 +33,7 @@ Deprecations:
 
 Others:
 ^^^^^^^
+- Add ``version.txt`` to manage version number in an easier way
 
 Documentation:
 ^^^^^^^^^^^^^^
