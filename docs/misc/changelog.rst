@@ -26,6 +26,7 @@ Bug Fixes:
 - Fix consistency in ``setup_model()`` for SAC, ``target_entropy`` now uses ``self.action_space`` instead of ``self.env.action_space`` (@solliet)
 - Fix reward threshold in ``test_identity.py``
 - Partially fix tensorboard indexing for PPO2 (@enderdead)
+- Fixed a bug in ``GAIL`` where the dataloader was not reinitialized after saving, causing an error when using ``CheckpointCallback``
 
 Deprecations:
 ^^^^^^^^^^^^^
@@ -695,4 +696,3 @@ Thanks to @bjmuld @iambenzo @iandanforth @r7vme @brendenpetersen @huvar @abhiskk
 @MarvineGothic @jdossgollin @SyllogismRXS @rusu24edward @jbulow @Antymon @seheevic @justinkterry @edbeeching
 @flodorner @KuKuXia @NeoExtended @solliet @mmcenta @richardwu @tirafesi @caburu @johannes-dornheim @kvenkman @aakash94
 @enderdead
-

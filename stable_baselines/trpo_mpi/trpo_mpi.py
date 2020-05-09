@@ -269,6 +269,11 @@ class TRPO(ActorCriticRLModel):
                     tf_util.function([observation, old_policy.obs_ph, action, atarg, ret],
                                      [self.summary, tf_util.flatgrad(optimgain, var_list)] + losses)
 
+    def _initialize_dataloader(self):
+        """Initialize dataloader."""
+        batchsize = self.timesteps_per_batch // self.d_step
+        self.expert_dataset.init_dataloader(batchsize)
+
     def learn(self, total_timesteps, callback=None, log_interval=100, tb_log_name="TRPO",
               reset_num_timesteps=True):
 
@@ -297,9 +302,7 @@ class TRPO(ActorCriticRLModel):
                 if self.using_gail:
                     true_reward_buffer = deque(maxlen=40)
 
-                    # Initialize dataloader
-                    batchsize = self.timesteps_per_batch // self.d_step
-                    self.expert_dataset.init_dataloader(batchsize)
+                    self._initialize_dataloader()
 
                     #  Stats not used for now
                     # TODO: replace with normal tb logging
@@ -538,3 +541,6 @@ class TRPO(ActorCriticRLModel):
         params_to_save = self.get_parameters()
 
         self._save_to_file(save_path, data=data, params=params_to_save, cloudpickle=cloudpickle)
+        # Reinitialize dataloader that was deleted for pickling
+        if self.using_gail and self.expert_dataset is not None:
+            self._initialize_dataloader()
