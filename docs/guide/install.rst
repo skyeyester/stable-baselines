@@ -12,8 +12,8 @@ installed as follows
 
 .. note::
 
-	Stable-Baselines supports Tensorflow versions from 1.8.0 to 1.14.0, and does not work on
-	Tensorflow versions 2.0.0 and above. Support for Tensorflow 2 API is planned.
+	Stable-Baselines supports Tensorflow versions from 1.8.0 to 1.15.0, and does not work on
+	Tensorflow versions 2.0.0 and above. PyTorch support is done in `Stable-Baselines3 <https://github.com/DLR-RM/stable-baselines3>`_
 
 
 Ubuntu

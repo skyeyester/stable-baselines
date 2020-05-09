@@ -140,7 +140,7 @@ Designing an autonomous robot to perform a task involves interactions between va
 
 Snake Game AI
 --------------------------
-AI to play the classic snake game. 
+AI to play the classic snake game.
 The game was trained using PPO2 available from stable-baselines and
 then exported to tensorflowjs to run directly on the browser
 
@@ -178,3 +178,14 @@ Uses Stable Baselines to create a computational graph which is then used for tra
 | Authors: Szymon Brych
 | Email: szymon.brych@gmail.com
 | GitHub: https://github.com/Antymon/ppo_cpp
+
+
+Learning Agile Robotic Locomotion Skills by Imitating Animals
+-------------------------------------------------------------
+
+Learning locomotion gaits by imitating animals. It uses PPO1 and AWR.
+
+| Author: Xue Bin Peng, Erwin Coumans, Tingnan Zhang, Tsang-Wei Lee, Jie Tan, Sergey Levine
+| Website: https://xbpeng.github.io/projects/Robotic_Imitation/index.html
+| Github: https://github.com/google-research/motion_imitation
+| Paper: https://arxiv.org/abs/2004.00784
