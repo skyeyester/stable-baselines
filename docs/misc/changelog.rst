@@ -46,6 +46,7 @@ Documentation:
 - Fixed typos and update ``VecNormalize`` example to show normalization at test-time
 - Fixed ``train_mountaincar`` description
 - Added imitation baselines project
+- Updated install instructions
 
 
 Release 2.10.0 (2020-03-11)

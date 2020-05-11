@@ -74,15 +74,30 @@ If you have already installed with MPI support, you can disable MPI by uninstall
 with ``pip uninstall mpi4py``.
 
 
+.. note::
+
+	Unless you are using the bleeding-edge version, you need to install the correct Tensorflow version manually. See `Issue #849 <https://github.com/hill-a/stable-baselines/issues/849>`_
+
+
 Bleeding-edge version
 ---------------------
 
-With support for running tests and building the documentation.
+To install the latest master version:
+
+.. code-block:: bash
+
+	pip install git+https://github.com/hill-a/stable-baselines
+
+
+Development version
+-------------------
+
+To contribute to Stable-Baselines, with support for running tests and building the documentation.
 
 .. code-block:: bash
 
     git clone https://github.com/hill-a/stable-baselines && cd stable-baselines
-    pip install -e .[docs,tests]
+    pip install -e .[docs,tests,mpi]
 
 
 Using Docker Images
