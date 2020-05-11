@@ -507,9 +507,6 @@ class TRPO(ActorCriticRLModel):
         return self
 
     def save(self, save_path, cloudpickle=False):
-        if self.using_gail and self.expert_dataset is not None:
-            # Exit processes to pickle the dataset
-            self.expert_dataset.prepare_pickling()
         data = {
             "gamma": self.gamma,
             "timesteps_per_batch": self.timesteps_per_batch,
@@ -541,6 +538,3 @@ class TRPO(ActorCriticRLModel):
         params_to_save = self.get_parameters()
 
         self._save_to_file(save_path, data=data, params=params_to_save, cloudpickle=cloudpickle)
-        # Reinitialize dataloader that was deleted for pickling
-        if self.using_gail and self.expert_dataset is not None:
-            self._initialize_dataloader()

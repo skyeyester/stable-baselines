@@ -120,11 +120,32 @@ class ExpertDataset(object):
     def __del__(self):
         del self.dataloader, self.train_loader, self.val_loader
 
-    def prepare_pickling(self):
+    def __getstate__(self):
         """
-        Exit processes in order to pickle the dataset.
+        Gets state for pickling.
+
+        Excludes processes that are not pickleable
         """
-        self.dataloader, self.train_loader, self.val_loader = None, None, None
+        # Remove processes in order to pickle the dataset.
+        excluded = {'dataloader', 'train_loader', 'val_loader'}
+        state = {key:val for key, val in self.__dict__.items() if key not in excluded}
+        return state
+
+    def __setstate__(self, state):
+        """
+        Restores pickled state.
+
+        init_dataloader() must be called
+        after unpickling before using it with GAIL.
+
+        :param state: (dict)
+        """
+        self.__dict__.update(state)
+        for excluded_key in {'dataloader', 'train_loader', 'val_loader'}:
+            assert excluded_key not in state
+        self.dataloader = None
+        self.train_loader = None
+        self.val_loader = None
 
     def log_info(self):
         """

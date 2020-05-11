@@ -1,3 +1,4 @@
+import os
 import shutil
 
 import gym
@@ -73,6 +74,9 @@ def test_generate(generate_env):
     assert dataset.keys() == dataset_loaded.keys()
     for key in dataset.keys():
         assert (dataset[key] == dataset_loaded[key]).all(), "different data at '{}'".format(key)
+    # Cleanup folder
+    if os.path.isdir('test_recorded_images'):
+        shutil.rmtree('test_recorded_images')
 
 
 def test_generate_callable():
