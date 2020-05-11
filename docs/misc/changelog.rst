@@ -33,7 +33,8 @@ Deprecations:
 
 Others:
 ^^^^^^^
-- Add ``version.txt`` to manage version number in an easier way
+- Added ``version.txt`` to manage version number in an easier way
+- Added ``.readthedocs.yml`` to install requirements with read the docs
 
 Documentation:
 ^^^^^^^^^^^^^^

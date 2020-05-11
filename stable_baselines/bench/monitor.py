@@ -13,8 +13,6 @@ import numpy as np
 
 
 class Monitor(gym.Wrapper):
-    EXT = "monitor.csv"
-    file_handler = None
     """
     A monitor wrapper for Gym environments, it is used to know the episode reward, length, time and other data.
 
@@ -24,6 +22,8 @@ class Monitor(gym.Wrapper):
     :param reset_keywords: (tuple) extra keywords for the reset call, if extra parameters are needed at reset
     :param info_keywords: (tuple) extra information to log, from the information return of environment.step
     """
+    EXT = "monitor.csv"
+    file_handler = None
     def __init__(self,
                  env: gym.Env,
                  filename: Optional[str],

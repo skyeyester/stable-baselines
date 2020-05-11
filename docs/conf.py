@@ -36,10 +36,10 @@ class Mock(MagicMock):
 # Mock modules that requires C modules
 # Note: because of that we cannot test examples using CI
 MOCK_MODULES = ['joblib', 'scipy', 'scipy.signal',
-                'pandas', 'mpi4py', 'mujoco-py', 'cv2', 'tensorflow',
+                'mpi4py', 'mujoco-py', 'cv2', 'tensorflow',
                 'tensorflow.contrib', 'tensorflow.contrib.layers',
                 'tensorflow.python', 'tensorflow.python.client', 'tensorflow.python.ops',
-                'tqdm', 'cloudpickle', 'matplotlib', 'matplotlib.pyplot',
+                'tqdm', 'matplotlib', 'matplotlib.pyplot',
                 'seaborn', 'tensorflow.core', 'tensorflow.core.util', 'tensorflow.python.util',
                 'zmq']
 sys.modules.update((mod_name, Mock()) for mod_name in MOCK_MODULES)
@@ -207,7 +207,3 @@ texinfo_documents = [
 
 
 # -- Extension configuration -------------------------------------------------
-
-# Install gym on read the doc
-if on_rtd:
-    os.system('pip install gym')
